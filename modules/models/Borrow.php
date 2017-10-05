@@ -60,7 +60,7 @@ class Borrow extends \yii\db\ActiveRecord
     public function onborrow($userid){
             $where['userid']=$userid;
             $where['ifback']=0;
-            $res=borrow::find()->select('borrowid,bookid,borrowtime,backtime')->with('relate')->where($where);
+            $res=borrow::find()->select('borrowid,bookid,borrowtime,backtime')->with('relate')->where($where)->orderBy('borrowid DESC');
 
             $pages = new Pagination(['totalCount' =>$res->count(), 'pageSize' => '5']); 
             $res = $res->offset($pages->offset)->limit($pages->limit)->asArray()->all();
@@ -79,7 +79,7 @@ class Borrow extends \yii\db\ActiveRecord
     }
     public function historyborrow($userid){
             $where['userid']=$userid;
-            $res=Borrow::find()->select('borrowid,bookid,borrowtime,backtime,ifback')->where($where)->with('relate');
+            $res=Borrow::find()->select('borrowid,bookid,borrowtime,backtime,ifback')->where($where)->orderBy('borrowid DESC')->with('relate');
             $pages = new Pagination(['totalCount' =>$res->count(), 'pageSize' => '10']); 
             $res = $res->offset($pages->offset)->limit($pages->limit)->asArray()->all();
 
