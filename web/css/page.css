@@ -1,0 +1,32 @@
+#pageBar {
+    text-align: center;
+    padding: 10px 20px 20px 0;
+
+}
+.pageBtn a {
+    display: inline-block;
+    border: 1px solid #DDA0DD;
+    padding: 8px 16px;
+    margin: 0px 5px;
+    font-size: 13px;
+    background: #ECECEC;
+    color: #008CBA;
+    border-radius: 5px;
+    
+}
+.pageBtn-selected a {
+    display: inline-block;
+    border: 1px solid #aaa;
+    padding: 8px 16px;
+    margin: 0px 5px;
+    font-size: 13px;
+    background: #187BBD;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    
+}
+.pageBtn a:hover {
+    background: #187BBD;
+    color: white;
+}

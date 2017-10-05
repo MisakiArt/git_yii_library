@@ -1,0 +1,67 @@
+.index{
+	margin-top:5px;
+	width: 100%;
+	height: 30px;
+	background-color: #6495ED;
+	border-radius: 20px 20px 0px 0px;
+	padding-left: 15px;
+}
+.index div{
+	text-align: center;
+	float: left;
+	padding: 5px;
+   font-size: 16px;
+	margin-right:10px;
+}
+
+#re_content{
+	width: 80%;
+	margin: 50px auto;
+	
+}
+.re_table{
+	width:500px;
+	margin: 15px auto;
+}
+.re_table th{
+	height: 30px;
+
+}
+
+.re_table input{
+	width:200px;
+}
+
+
+.msg{
+	color: red;
+	font-size: 15px;
+}
+.site-login{
+	width: 80%;
+	margin: 0 auto;
+}
+.site-login div{
+	width: 50%;
+	margin: 0 auto;
+}
+
+.site-login input{
+	width: 80%;
+}
+
+.re_p{
+	width:50%;
+	text-align:center;
+	margin: 0 auto;
+    font-size:20px;
+    line-height: 50px;
+    font-family: '宋体';
+    font-weight: bolder;
+}
+.re_d{
+	width:50%;
+    font-size:15px;
+    line-height: 50px;
+    font-family: '微软雅黑';
+}
