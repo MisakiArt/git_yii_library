@@ -1,71 +1,45 @@
 <?php
+namespace frontend\models;
 
-namespace app\models;
-
-use Yii;
 use yii\base\Model;
-use app\models\user;
+use common\models\User;
 
 /**
- * LoginForm is the model behind the login form.
- *
- * @property User|null $user This property is read-only.
- *
+ * Signup form
  */
 class SignupForm extends Model
 {
     public $username;
-    public $userpassword;
-    public $useremail;
-    public $rePassword;
-    public $verifyCode;
+    public $email;
+    public $password;
 
 
     /**
-     * @return array the validation rules.
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-           ['username','filter','filter'=>'trim'],
-           ['username','required'],
-           ['username','unique','targetClass'=>'app\models\User','message'=>'用户名已被使用'],
-           ['username','string','min'=>5,'max'=>255],
-           ['useremail','filter','filter'=>'trim'],
-           ['useremail','required'],
-           ['useremail','unique','targetClass'=>'app\models\User','message'=>'邮箱已被使用'],
-           ['username','string','max'=>255],
-           [['userpassword','rePassword'],'required'],
-           [['userpassword','rePassword'],'string','min'=>6],
-           ['rePassword','compare','compareAttribute'=>'userpassword','message'=>'两次密码不一致'],
-           ['verifyCode','captcha']
-           
+            ['username', 'trim'],
+            ['username', 'required'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
 
+            ['email', 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
-        ];
-    }
-
-    public function attributeLabels(){
-        return [
-        'username'=>'用户名',
-        'email'=>'邮箱',
-        'password'=>'密码',
-        'rePassword'=>'重复密码',
-        'verifyCode'=>'验证码'
+            ['password', 'required'],
+            ['password', 'string', 'min' => 6],
         ];
     }
 
     /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
+     * Signs user up.
      *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
-     */
-
-    /**
-     * Logs in a user using the provided username and password.
-     * @return bool whether the user is logged in successfully
+     * @return User|null the saved model or null if saving fails
      */
     public function signup()
     {
@@ -75,12 +49,10 @@ class SignupForm extends Model
         
         $user = new User();
         $user->username = $this->username;
-        $user->useremail = $this->useremail;
-        $user->registerdate=date('Y-m-d H:i:s');
-        $user->setPassword($this->userpassword);
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
         
         return $user->save() ? $user : null;
     }
-
-
 }
