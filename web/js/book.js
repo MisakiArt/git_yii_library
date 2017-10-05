@@ -2,7 +2,7 @@ $(document).ready(function($) {
 	init();
 	showmeau();
 	var id=$('.book_table').attr('id');
-	var url='http://localhost/yii_library/web/index/book/getbook?id='+id;
+	var url='http://localhost/git_yii_library/web/index/book/getbook?id='+id;
 	$.get(url,function(data){
 		var items = $.parseJSON(data);	
 		var i=0;

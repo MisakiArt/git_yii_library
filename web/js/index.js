@@ -62,7 +62,7 @@ $(function(){
 
 function type(){
 var tag=$('.tag');
-var init_data_url = "http://localhost/yii_library/web/index/index/list?act=inittype";
+var init_data_url = "http://localhost/git_yii_library/web/index/index/list?act=inittype";
   $.get(init_data_url,function(data){
     var row_items = $.parseJSON(data);
     for( var i = 0 ; i < row_items.length ; i++) {
@@ -102,7 +102,7 @@ function turnPage(page,sort,index,search,type)
 
   $.ajax({
     type: 'POST',
-    url: "http://localhost/yii_library/web/index/index/list?act=seldata",  
+    url: "http://localhost/git_yii_library/web/index/index/list?act=seldata",  
     data: {'pageNum':page,'sort':sort,'index':index,'search':search,'type':type,
   },
     dataType: 'json',
@@ -127,7 +127,7 @@ function turnPage(page,sort,index,search,type)
         var row_obj = $("<tr style='magin:0;' class='restr'></tr>");
         var col_td =''; 
         var id=array['id'];
-        col_td="<td><a href='http://localhost/yii_library/web/index/book/book?id="+id+"'>"+array['bookid']+"</a></td><td><a href='http://localhost/yii_library/web/index/book/book?id="+id+"'>"+array['bookname']+"</a></td><td>"+array['author']+"</td><td>"+array['booktypeid']+"</td><td>"+array['bookcount']+"</td>"
+        col_td="<td><a href='http://localhost/git_yii_library/web/index/book/book?id="+id+"'>"+array['bookid']+"</a></td><td><a href='http://localhost/yii_library/web/index/book/book?id="+id+"'>"+array['bookname']+"</a></td><td>"+array['author']+"</td><td>"+array['booktypeid']+"</td><td>"+array['bookcount']+"</td>"
         row_obj.append(col_td);
         restable.append(row_obj);
       });}
