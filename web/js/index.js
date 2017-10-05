@@ -33,6 +33,12 @@ $(function(){
 
    });
 
+   $(".c_input").keypress(function(e){
+        if (e.keyCode == 13){
+            $('.search').click();
+        }
+})
+
 
 
    $('select').change(function(){
