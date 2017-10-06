@@ -43,7 +43,7 @@ $(function(){
 
    $('select').change(function(){
    	 index=$('select option:selected').val();
-    turnPage(curPage,sort,index,search); 
+    turnPage(curPage,sort,index,search,typeg); 
   
    });
 
@@ -52,7 +52,7 @@ $(function(){
     $("input[name='sort']").each(function(){//循环绑定事件  
         this.onclick = function(){  
         	 sort=$(this).val();
-          turnPage(curPage,sort,index,search); 
+          turnPage(curPage,sort,index,search,typeg); 
         }  
     });
 
