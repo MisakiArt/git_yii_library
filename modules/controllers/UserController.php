@@ -10,23 +10,9 @@ use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\cookie;
-use yii\filters\HttpCache;
 
 class UserController extends \yii\web\Controller
 {
-    public function behaviors()
-{
-    return [
-        [
-            'class' => HttpCache::className(),
-            'only' => ['usercenter'],
-            'lastModified' => function ($action, $params) {
-                $q = new \yii\db\Query();
-                return $q->from('user')->max('updated_at');
-            },
-        ],
-    ];
-}
 
     public function actions(){
         // 验证码
