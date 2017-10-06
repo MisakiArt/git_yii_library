@@ -7,10 +7,26 @@ use app\modules\models\User;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\filters\HttpCache;
+
 
 class IndexController extends \yii\web\Controller
 {
   public $layout='main';
+
+  public function behaviors()
+{
+    return [
+        [
+            'class' => HttpCache::className(),
+            'only' => ['index'],
+            'lastModified' => function ($action, $params) {
+                $q = new \yii\db\Query();
+                return $q->from('library_book')->max('updated_at');
+            },
+        ],
+    ];
+}
 
 //首页，判断是否需要自动登录
     public function actionIndex()
