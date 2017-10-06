@@ -103,8 +103,8 @@ class Borrow extends \yii\db\ActiveRecord
     }
     public function borrowbook($bookid,$userid){
          $book=Book::find('$bookreserves')->where(['id'=>$bookid])->one();
+         if(!$book) throw new Exception("不存在的");
          if($book->bookreserves>0){
-
             $date=date_create(date('Y-m-d'));
             $borrow=new borrow();
             $borrow->bookid=$bookid;
@@ -131,11 +131,12 @@ class Borrow extends \yii\db\ActiveRecord
     }
     public function longdate($borrowid){
             $borrow=borrow::find()->where(['borrowid'=>$borrowid])->one();
+            if(!$borrow) throw new Exception("不存在的");
             $backtime=$borrow->backtime;
             $backtime=date_create($backtime);
              date_add($backtime,date_interval_create_from_date_string("30 days"));
              $borrow->backtime=(string)date_format($backtime,'Y-m-d');
-             $borrow->save();
+            if(!$borrow->save()) throw new Exception("保存失败");
              echo "<script>alert('延期成功');history.go(-1);</script>";
     }
 }

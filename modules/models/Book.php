@@ -71,13 +71,15 @@ class Book extends \yii\db\ActiveRecord
 
     public function borrowbook($id){
         $book=Book::find()->where(['id'=>$id])->one();
+        if(!$book){throw new Exception("不存在的");}
         $book->bookreserves=$book->bookreserves-1;
-        $book->save();
+        if(!$book->save()) throw new Exception("保存失败");;
 
     }
 
     public function getbookname($id){
         $book=Book::find()->select('bookname')->where(['id'=>$id])->one();
+        if(!$book) throw new Exception("不存在的");
         return $book->bookname;
     }
     public function getbookbyid($id){
@@ -93,8 +95,9 @@ class Book extends \yii\db\ActiveRecord
 
     public function addhot($id){
         $book=Book::find()->where(['id'=>$id])->one();
+        if(!$book) throw new Exception("不存在的");
         $book->bookcount++;
-        $book->save();
+        if(!$book->save()) throw new Exception("保存失败");
     }
      //数据检索方法
    public function seldata(){

@@ -65,6 +65,7 @@ class ModifypwdForm extends Model
             return false;
         }  
         $user =User::find()->where(['userid'=>$this->userid])->one();
+        if(!$user) return false;
         if(md5($this->userpassword)==$user->userpassword){
         $user->setPassword($this->newPassword);
         

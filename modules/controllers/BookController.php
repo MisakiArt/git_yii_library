@@ -10,7 +10,7 @@ class BookController extends \yii\web\Controller
 	public $layout='main';
     public function actionBook()
     {
-    	if($_GET['id']!=null){
+    	if(isset($_GET['id'])&&!empty($_GET['id'])){
 
               return $this->render('book');
 
@@ -51,6 +51,7 @@ class BookController extends \yii\web\Controller
             echo "<script>alert('还书失败');history.go(-1);</script>";
 
         }
+        else return $this->redirect(['index/index']);
 
     }
     function actionLongdate(){
@@ -59,6 +60,8 @@ class BookController extends \yii\web\Controller
             Borrow::longdate($borrowid);
 
         }
+        else
+            return $this->redirect(['index/index']);
 
     }
 
